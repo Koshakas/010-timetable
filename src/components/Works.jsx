@@ -1,9 +1,11 @@
 import { Button, Card, Table } from "react-bootstrap";
 import AddWork from "./AddWork";
 import React, { useState } from "react";
+import Work from "./Work";
 
-function Works() {
+function Works(props) {
     const [addWork, setAddWork] = useState(false);
+    const [works, setWorks] = useState([]);
 
     function addWorkHandler() {
         setAddWork(true);
@@ -13,9 +15,15 @@ function Works() {
         setAddWork(false);
     }
 
+    const handleAddWork = data => {
+        setWorks([...works, data]);
+        closeWorkHandler();
+        props.status(true);
+    };
+
     return (
         <>
-            {addWork && <AddWork />}
+            {addWork && <AddWork setWorks={handleAddWork} />}
             <Card>
                 <Card.Header>
                     {addWork ? (
@@ -43,13 +51,9 @@ function Works() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>11-12</td>
-                                <td>Markas Tvenas</td>
-                                <td>Higiena</td>
-                                <td>Ivalyti tarpudančius</td>
-                                <td>30min.</td>
-                            </tr>
+                            {works.map(w => (
+                                <Work key={w.i} work={w} />
+                            ))}
                         </tbody>
                     </Table>
                 </Card.Body>
