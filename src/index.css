@@ -9,3 +9,12 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.filters form {
+    display: flex;
+    align-items: center;
+}
+.filters form div,
+.filters form button {
+    margin: 5px;
+}

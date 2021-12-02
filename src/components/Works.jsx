@@ -2,6 +2,7 @@ import { Button, Card, Table } from "react-bootstrap";
 import AddWork from "./AddWork";
 import React, { useState } from "react";
 import Work from "./Work";
+import Filter from "./Filter";
 
 function Works(props) {
     const [addWork, setAddWork] = useState(false);
@@ -21,6 +22,10 @@ function Works(props) {
         props.status(true);
     };
 
+    const handleFilter = filter => {
+        console.log(filter);
+    };
+
     return (
         <>
             {addWork && <AddWork setWorks={handleAddWork} />}
@@ -36,9 +41,15 @@ function Works(props) {
                         </Button>
                     )}
                 </Card.Header>
+
                 <Card.Header>
                     <h3>Darbų sąrašas</h3>
                 </Card.Header>
+
+                <Card.Header>
+                    <Filter handleFilter={handleFilter} />
+                </Card.Header>
+
                 <Card.Body>
                     <Table striped bordered hover>
                         <thead>
@@ -51,8 +62,8 @@ function Works(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {works.map(w => (
-                                <Work key={w.i} work={w} />
+                            {works.map((w, i) => (
+                                <Work key={i} work={w} />
                             ))}
                         </tbody>
                     </Table>
