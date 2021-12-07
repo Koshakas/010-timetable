@@ -1,4 +1,4 @@
-function Work({ work }) {
+function Work({ work, deleteW }) {
     const diff = (start, end) => {
         start = start.split(":");
         end = end.split(":");
@@ -13,6 +13,11 @@ function Work({ work }) {
         const minutes = Math.floor(diff / 1000 / 60);
         return (hours < 9 ? "0" : "") + hours + ":" + (minutes < 9 ? "0" : "") + minutes;
     };
+
+    const getIdHandler = () => {
+        deleteW(work.id);
+    };
+
     return (
         <tr>
             <td>{work.date}</td>
@@ -20,6 +25,12 @@ function Work({ work }) {
             <td>{work.service}</td>
             <td>{work.description}</td>
             <td>{diff(work.from, work.to)}</td>
+            <td>
+                <button>Edit</button>
+            </td>
+            <td>
+                <button onClick={getIdHandler}>Delete</button>
+            </td>
         </tr>
     );
 }
