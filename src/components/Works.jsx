@@ -1,12 +1,14 @@
-import { Button, Card, Table } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import AddWork from "./AddWork";
 import React, { useState } from "react";
-import Work from "./Work";
 import Filter from "./Filter";
+import WorksTable from "./WorksTable";
+import * as services from "../services";
 
 function Works(props) {
     const [addWork, setAddWork] = useState(false);
     const [works, setWorks] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
 
     function addWorkHandler() {
         setAddWork(true);
@@ -17,13 +19,20 @@ function Works(props) {
     }
 
     const handleAddWork = data => {
-        setWorks([...works, data]);
+        services.addWork(data);
+        // setWorks((prevData) => [...works, prevData]);
         closeWorkHandler();
         props.status(true);
     };
 
-    const handleFilter = filter => {
-        console.log(filter);
+    const handleFilter = criteria => {
+        const filteredItems = works.filter(item => {
+            return Object.keys(criteria).every(filter => {
+                return criteria[filter] === item[filter];
+            });
+        });
+        setSearchResult(filteredItems);
+        console.log("filteredItems", filteredItems);
     };
 
     return (
@@ -49,25 +58,7 @@ function Works(props) {
                 <Card.Header>
                     <Filter handleFilter={handleFilter} />
                 </Card.Header>
-
-                <Card.Body>
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Data</th>
-                                <th>Klientas</th>
-                                <th>Suteikta paslauga</th>
-                                <th>Aprašymas</th>
-                                <th>Trukmė</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {works.map((w, i) => (
-                                <Work key={i} work={w} />
-                            ))}
-                        </tbody>
-                    </Table>
-                </Card.Body>
+                <WorksTable data={searchResult.length ? works : searchResult} />
             </Card>
         </>
     );

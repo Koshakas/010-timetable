@@ -10,6 +10,14 @@ const services = [
     {
         id: 3,
         title: "Elektros pajungimas"
+    },
+    {
+        id: 4,
+        title: "Stalo padengimas"
+    },
+    {
+        id: 5,
+        title: "Indų plovimas"
     }
 ];
 

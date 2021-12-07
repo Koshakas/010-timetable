@@ -10,6 +10,14 @@ const companies = [
     {
         code: 31245,
         title: "Logisteta"
+    },
+    {
+        code: 78564,
+        title: "Krepšio Fanai"
+    },
+    {
+        code: 31234,
+        title: "Darbščios Bitutės"
     }
 ];
 
