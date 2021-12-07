@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 import AddWork from "./AddWork";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Filter from "./Filter";
 import WorksTable from "./WorksTable";
 import * as services from "../services";
@@ -35,6 +35,10 @@ function Works(props) {
         console.log("filteredItems", filteredItems);
     };
 
+    useEffect(() => {
+        services.getAllWorks(setWorks);
+    }, []);
+
     return (
         <>
             {addWork && <AddWork setWorks={handleAddWork} />}
@@ -58,7 +62,7 @@ function Works(props) {
                 <Card.Header>
                     <Filter handleFilter={handleFilter} />
                 </Card.Header>
-                <WorksTable data={searchResult.length ? works : searchResult} />
+                <WorksTable data={searchResult.length ? searchResult : works} />
             </Card>
         </>
     );
