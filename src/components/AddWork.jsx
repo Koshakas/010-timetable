@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { FloatingLabel } from "react-bootstrap";
 import Companies from "./Companies";
 import Services from "./Services";
+import * as services from "../services";
 
 function AddWork(props) {
     const [workData, setWorkData] = useState({
@@ -15,6 +16,10 @@ function AddWork(props) {
         to: ""
     });
 
+    useEffect(() => {
+        props.updateId && services.showById(workData => setWorkData(workData), props.updateId);
+    }, [props.updateId]);
+
     const handleChange = e => {
         setWorkData({
             ...workData,
@@ -25,6 +30,10 @@ function AddWork(props) {
     const handleSubmit = e => {
         e.preventDefault();
         props.setWorks(workData);
+    };
+
+    const updateHandler = () => {
+        props.onUpdate(props.updateId, workData);
     };
 
     return (
@@ -70,9 +79,15 @@ function AddWork(props) {
                         <Form.Control name="to" onChange={handleChange} value={workData.to} type="time" />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
-                        Saugoti
-                    </Button>
+                    {props.updateId ? (
+                        <Button variant="primary" type="button" onClick={updateHandler}>
+                            Redaguoti
+                        </Button>
+                    ) : (
+                        <Button variant="primary" type="submit">
+                            Saugoti
+                        </Button>
+                    )}
                 </Form>
             </Card.Body>
         </Card>

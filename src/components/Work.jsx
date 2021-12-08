@@ -1,4 +1,9 @@
+import React, { useContext } from "react";
+import { WorkContext } from "./Works";
+
 function Work({ work, deleteW }) {
+    const { setWorkId } = useContext(WorkContext);
+
     const diff = (start, end) => {
         start = start.split(":");
         end = end.split(":");
@@ -18,6 +23,10 @@ function Work({ work, deleteW }) {
         deleteW(work.id);
     };
 
+    const getIdUpdateHandler = () => {
+        setWorkId(work.id);
+    };
+
     return (
         <tr>
             <td>{work.date}</td>
@@ -26,7 +35,7 @@ function Work({ work, deleteW }) {
             <td>{work.description}</td>
             <td>{diff(work.from, work.to)}</td>
             <td>
-                <button>Edit</button>
+                <button onClick={getIdUpdateHandler}>Edit</button>
             </td>
             <td>
                 <button onClick={getIdHandler}>Delete</button>

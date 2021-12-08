@@ -1,14 +1,24 @@
 import { Button, Card } from "react-bootstrap";
 import AddWork from "./AddWork";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Filter from "./Filter";
 import WorksTable from "./WorksTable";
 import * as services from "../services";
 
+export const WorkContext = React.createContext();
+
 function Works(props) {
+    const [workId, setWorkId] = useState("");
     const [addWork, setAddWork] = useState(false);
     const [works, setWorks] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
+    const value = useMemo(
+        () => ({
+            workId,
+            setWorkId
+        }),
+        [workId]
+    );
 
     function addWorkHandler() {
         setAddWork(true);
@@ -18,9 +28,13 @@ function Works(props) {
         setAddWork(false);
     }
 
+    function onUpdateWorkHandler(id, data) {
+        services.updateWork(id, data);
+        setWorkId("");
+    }
+
     const handleAddWork = data => {
         services.addWork(data);
-        // setWorks((prevData) => [...works, prevData]);
         closeWorkHandler();
         props.status(true);
     };
@@ -39,9 +53,10 @@ function Works(props) {
         services.getAllWorks(setWorks);
     }, []);
 
+    console.log(workId);
     return (
         <>
-            {addWork && <AddWork setWorks={handleAddWork} />}
+            {(addWork || workId) && <AddWork onUpdate={onUpdateWorkHandler} setWorks={handleAddWork} updateId={workId} />}
             <Card>
                 <Card.Header>
                     {addWork ? (
@@ -62,7 +77,11 @@ function Works(props) {
                 <Card.Header>
                     <Filter handleFilter={handleFilter} />
                 </Card.Header>
-                <WorksTable data={searchResult.length ? searchResult : works} />
+                <Card.Body>
+                    <WorkContext.Provider value={value}>
+                        <WorksTable data={searchResult.length ? searchResult : works} />
+                    </WorkContext.Provider>
+                </Card.Body>
             </Card>
         </>
     );

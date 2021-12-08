@@ -17,14 +17,21 @@ export const addWork = data => {
     firebase.firestore().collection("times").add(data);
 };
 
-export const showById = () => {
-    //
-};
-
 export const deleteWork = id => {
     firebase.firestore().collection("times").doc(id).delete();
 };
 
-export const updateWork = () => {
-    //
+export const showById = (item, id) => {
+    firebase
+        .firestore()
+        .collection("times")
+        .doc(id)
+        .get()
+        .then(docRef => {
+            item(docRef.data());
+        });
+};
+
+export const updateWork = (id, data) => {
+    firebase.firestore().collection("times").doc(id).set(data);
 };
