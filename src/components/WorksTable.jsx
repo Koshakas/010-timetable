@@ -1,10 +1,10 @@
 import { Table } from "react-bootstrap";
 import * as services from "../services";
 import Work from "./Work";
+import { Button } from "react-bootstrap";
 
 const WorksTable = props => {
     const deleteItemHandler = id => {
-        console.log("lifted", id);
         services.deleteWork(id);
     };
 
@@ -13,8 +13,18 @@ const WorksTable = props => {
             <thead>
                 <tr>
                     <th>Data</th>
-                    <th>Klientas</th>
-                    <th>Suteikta paslauga</th>
+                    <th>
+                        Klientas
+                        <Button className="btn btn-danger" onClick={props.SortCompanyHandler}>
+                            SortByCompany
+                        </Button>
+                    </th>
+                    <th>
+                        Suteikta paslauga
+                        <Button className="btn btn-danger" onClick={props.SortServiceHandler}>
+                            SortByService
+                        </Button>
+                    </th>
                     <th>Aprašymas</th>
                     <th>Trukmė</th>
                     <th>Redaguoti</th>

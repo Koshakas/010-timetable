@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { WorkContext } from "./Works";
+import { Link } from "react-router-dom";
 
 function Work({ work, deleteW }) {
     const { setWorkId } = useContext(WorkContext);
@@ -39,6 +40,11 @@ function Work({ work, deleteW }) {
             </td>
             <td>
                 <button onClick={getIdHandler}>Delete</button>
+            </td>
+            <td>
+                <Link className={"btn btn-primary"} key={work.id} to={`work/${work.id}`}>
+                    Plačiau
+                </Link>
             </td>
         </tr>
     );
