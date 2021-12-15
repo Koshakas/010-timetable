@@ -26,6 +26,11 @@ const CompaniesTable = () => {
 
     const handleSubmit = e => {
         addCompany(companyData);
+        setCompanyData({
+            name: "",
+            manager: "",
+            address: ""
+        });
     };
 
     return (
