@@ -5,6 +5,7 @@ import Works from "./components/Works";
 import { Alert } from "react-bootstrap";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import WorkById from "./components/WorkById";
+import CompaniesTable from "./components/CompaniesTable";
 
 function App() {
     const [message, setMessage] = useState("");
@@ -26,6 +27,7 @@ function App() {
                 {message && <Alert>{message}</Alert>}
                 <Routes>
                     <Route path="/" element={<Works status={setMessageHandler} />} />
+                    <Route path="/companies" element={<CompaniesTable />} />
                     <Route path="/work/:id" element={<WorkById />} />{" "}
                 </Routes>
             </Router>

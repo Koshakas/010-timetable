@@ -18,3 +18,7 @@ code {
 .filters form button {
     margin: 5px;
 }
+.card-header button,
+.card-header a {
+    margin: 5px;
+}

@@ -1,9 +1,12 @@
 import { Button, Card } from "react-bootstrap";
 import AddWork from "./AddWork";
+import AddCompany from "./AddCompany";
 import React, { useEffect, useState, useMemo } from "react";
 import Filter from "./Filter";
 import WorksTable from "./WorksTable";
-import * as services from "../services";
+import * as services from "../services/services";
+import * as companies from "../services/companies";
+import { Link } from "react-router-dom";
 
 export const WorkContext = React.createContext();
 
@@ -66,6 +69,7 @@ function Works(props) {
     return (
         <>
             {(addWork || workId) && <AddWork onUpdate={onUpdateWorkHandler} setWorks={handleAddWork} updateId={workId} />}
+
             <Card>
                 <Card.Header>
                     {addWork ? (
@@ -73,9 +77,14 @@ function Works(props) {
                             Atšaukti
                         </Button>
                     ) : (
-                        <Button className="btn btn-primary" onClick={addWorkHandler}>
-                            Pridėti
-                        </Button>
+                        <div>
+                            <Button className="btn btn-primary" onClick={addWorkHandler}>
+                                Pridėti Darbą
+                            </Button>
+                            <Link className="btn btn-primary" to={"/companies"}>
+                                Peržiūrėti įmones
+                            </Link>
+                        </div>
                     )}
                 </Card.Header>
 

@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { FloatingLabel } from "react-bootstrap";
 import Companies from "./Companies";
 import Services from "./Services";
-import * as services from "../services";
+import * as services from "../services/services";
 
 function AddWork(props) {
     const [workData, setWorkData] = useState({
@@ -48,6 +48,7 @@ function AddWork(props) {
 
                     <FloatingLabel className="mb-3" label="Pasirinkite įmonę">
                         <Form.Select name="company" onChange={handleChange} value={workData.company} aria-label="Floating label select example">
+                            <option></option>
                             <Companies />
                         </Form.Select>
                     </FloatingLabel>

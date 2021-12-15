@@ -1,12 +1,10 @@
-import firebase from "./firebase";
+import firebase from "../firebase";
 
 const sortOptions = {
     company_asc: { column: "company", direction: "asc" },
     company_desc: { column: "company", direction: "desc" },
     service_asc: { column: "service", direction: "asc" },
     service_desc: { column: "service", direction: "desc" }
-    // date_asc:{column: "date", direction:"asc"},
-    // date_desc:{column: "date", direction:"desc"},
 };
 
 export const getAllWorks = (getWorks, sortBy) => {

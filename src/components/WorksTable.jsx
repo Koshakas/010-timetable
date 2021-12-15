@@ -1,5 +1,5 @@
 import { Table } from "react-bootstrap";
-import * as services from "../services";
+import * as services from "../services/services";
 import Work from "./Work";
 import { Button } from "react-bootstrap";
 
