@@ -1,11 +1,9 @@
 import { Button, Card } from "react-bootstrap";
 import AddWork from "./AddWork";
-import AddCompany from "./AddCompany";
 import React, { useEffect, useState, useMemo } from "react";
 import Filter from "./Filter";
 import WorksTable from "./WorksTable";
 import * as services from "../services/services";
-import * as companies from "../services/companies";
 import { Link } from "react-router-dom";
 
 export const WorkContext = React.createContext();
