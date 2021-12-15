@@ -2,6 +2,7 @@ import { Table } from "react-bootstrap";
 import * as services from "../services/services";
 import Work from "./Work";
 import { Button } from "react-bootstrap";
+import { ArrowDownUp } from "react-bootstrap-icons";
 
 const WorksTable = props => {
     const deleteItemHandler = id => {
@@ -13,11 +14,16 @@ const WorksTable = props => {
             <thead>
                 <tr>
                     <th>Data</th>
-                    <th>Klientas</th>
                     <th>
-                        Suteikta paslauga
+                        <span>Klientas</span>
+                        <Button className="btn btn-danger" onClick={props.SortCompanyHandler}>
+                            <ArrowDownUp />
+                        </Button>
+                    </th>
+                    <th>
+                        <span className="mr-3">Paslauga</span>
                         <Button className="btn btn-danger" onClick={props.SortServiceHandler}>
-                            Rikiuoti
+                            <ArrowDownUp />
                         </Button>
                     </th>
                     <th>Aprašymas</th>
