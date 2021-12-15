@@ -9,7 +9,7 @@ function Companies() {
         getAllCompanies(setCompanies);
     }, []);
 
-    return companies.map(c => <Company key={c.code} value={c.title} title={c.title} />);
+    return companies.map(c => <Company key={c.code} value={c.name} title={c.name} />);
 }
 
 export default Companies;

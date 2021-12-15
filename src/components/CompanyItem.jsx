@@ -9,8 +9,9 @@ const CompanyItem = props => {
 
     return (
         <tr>
-            <td>{props.company.code}</td>
-            <td>{props.company.title}</td>
+            <td>{props.company.name}</td>
+            <td>{props.company.manager}</td>
+            <td>{props.company.address}</td>
             <td>
                 <Button variant="danger" onClick={() => handleDelete(props.company.id)}>
                     <Trash />

@@ -8,8 +8,9 @@ import { Link } from "react-router-dom";
 const CompaniesTable = () => {
     const [companies, setCompanies] = useState([]);
     const [companyData, setCompanyData] = useState({
-        code: "",
-        title: ""
+        name: "",
+        manager: "",
+        address: ""
     });
 
     useEffect(() => {
@@ -31,8 +32,9 @@ const CompaniesTable = () => {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>Code</th>
-                    <th>Title</th>
+                    <th>Pavadinimas</th>
+                    <th>Vadovas</th>
+                    <th>Adresas</th>
                     <th>
                         <Link className="btn btn-primary" to="/">
                             <ArrowReturnLeft />
@@ -47,12 +49,17 @@ const CompaniesTable = () => {
                 <tr>
                     <td>
                         <Form.Group className="mb-3">
-                            <Form.Control placeholder="Code" name="code" onChange={handleChange} type="text" value={companyData.code} />
+                            <Form.Control placeholder="Pavadinimas" name="name" onChange={handleChange} type="text" value={companyData.name} />
                         </Form.Group>
                     </td>
                     <td>
                         <Form.Group className="mb-3">
-                            <Form.Control placeholder="Title" name="title" onChange={handleChange} type="text" value={companyData.title} />
+                            <Form.Control placeholder="Vadovas" name="manager" onChange={handleChange} type="text" value={companyData.manager} />
+                        </Form.Group>
+                    </td>
+                    <td>
+                        <Form.Group className="mb-3">
+                            <Form.Control placeholder="Adresas" name="address" onChange={handleChange} type="text" value={companyData.address} />
                         </Form.Group>
                     </td>
                     <td>

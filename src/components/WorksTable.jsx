@@ -13,16 +13,11 @@ const WorksTable = props => {
             <thead>
                 <tr>
                     <th>Data</th>
-                    <th>
-                        Klientas
-                        <Button className="btn btn-danger" onClick={props.SortCompanyHandler}>
-                            SortByCompany
-                        </Button>
-                    </th>
+                    <th>Klientas</th>
                     <th>
                         Suteikta paslauga
                         <Button className="btn btn-danger" onClick={props.SortServiceHandler}>
-                            SortByService
+                            Rikiuoti
                         </Button>
                     </th>
                     <th>Aprašymas</th>
