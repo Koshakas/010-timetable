@@ -1,4 +1,5 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
+import User from "./User";
 
 function Header() {
     return (
@@ -8,6 +9,7 @@ function Header() {
                 <Nav className="me-auto">
                     <Nav.Link href="#/"></Nav.Link>
                 </Nav>
+                <User />
             </Container>
         </Navbar>
     );

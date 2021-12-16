@@ -1,6 +1,6 @@
 import { Card } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import * as services from "../services/services";
+import * as services from "../services/WorksServices";
 import { useParams } from "react-router-dom";
 
 const WorkById = () => {

@@ -1,4 +1,4 @@
-import firebase from "../firebase";
+import firebase from "../firebaseConfig";
 
 const sortOptions = {
     company_asc: { column: "company", direction: "asc" },

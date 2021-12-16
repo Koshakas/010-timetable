@@ -1,5 +1,5 @@
 import { Table } from "react-bootstrap";
-import * as services from "../services/services";
+import * as services from "../services/WorksServices";
 import Work from "./Work";
 import { Button } from "react-bootstrap";
 import { ArrowDownUp } from "react-bootstrap-icons";
@@ -34,7 +34,7 @@ const WorksTable = props => {
             </thead>
             <tbody>
                 {props.data.map((w, i) => (
-                    <Work key={i} work={w} deleteW={deleteItemHandler} />
+                    <Work key={"workid" + i} work={w} deleteW={deleteItemHandler} />
                 ))}
             </tbody>
         </Table>
